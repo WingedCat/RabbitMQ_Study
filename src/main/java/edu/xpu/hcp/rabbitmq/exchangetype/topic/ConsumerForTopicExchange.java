@@ -1,12 +1,11 @@
-package edu.xpu.hcp.rabbitmq.quickstart;
+package edu.xpu.hcp.rabbitmq.exchangetype.topic;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer;
 
-
-public class Consumer {
+public class ConsumerForTopicExchange {
     public static void main(String[] args) throws Exception {
         //1、创建一个ConnectionFactory
         ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -21,17 +20,16 @@ public class Consumer {
         Connection connection = connectionFactory.newConnection();
         //3、通过connection创建一个Channel
         Channel channel = connection.createChannel();
-        //4、声明队列
-        String queueName = "test001";
-        /**
-         * 方法参数解析：queueDeclare(String queue, boolean durable, boolean exclusive, boolean autoDelete,Map<String, Object> arguments)
-         * queue:队列名称
-         * durable：队列持久化(服务器重启后数据依然存在)
-         * exclusive:队列排他(限于此连接)
-         * autoDelete:队列自动删除(队列不再使用时服务器会将队列自动删除)
-         * arguments:队列的其他属性
-         */
+        //4、声明
+        String exchangeName = "topic_exchange";
+        String exchangeType = "topic";
+        String queueName = "testqueue";
+        String routingKey = "waring.#";
+        //声明交换器
+        channel.exchangeDeclare(exchangeName,exchangeType,true,false,false,null);
         channel.queueDeclare(queueName,false,false,false,null);
+        //将交换器和队列绑定
+        channel.queueBind(queueName,exchangeName,routingKey);
         //5、创建消费者
         QueueingConsumer consumer = new QueueingConsumer(channel);
         //6、设置Channel

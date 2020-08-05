@@ -9,7 +9,7 @@ public class Consumer2 {
     public static void main(String[] args) throws Exception {
         //1、创建一个ConnectionFactory
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        connectionFactory.setHost("123.56.45.209");
+        connectionFactory.setHost("IP");
         connectionFactory.setPort(5672);
         connectionFactory.setVirtualHost("/");
         connectionFactory.setUsername("admin");

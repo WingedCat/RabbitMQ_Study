@@ -10,7 +10,7 @@ public class ConsumerForDirectExchange {
         //1、创建一个ConnectionFactory
         ConnectionFactory connectionFactory = new ConnectionFactory();
         //设置属性
-        connectionFactory.setHost("123.56.45.209");
+        connectionFactory.setHost("IP");
         connectionFactory.setPort(5672);
         connectionFactory.setVirtualHost("/");
         connectionFactory.setUsername("admin");
