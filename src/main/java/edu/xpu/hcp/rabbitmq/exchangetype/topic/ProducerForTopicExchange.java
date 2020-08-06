@@ -26,6 +26,7 @@ public class ProducerForTopicExchange {
         String routingKey2 = "info.news";
         String routingKey3 = "info.me";
         String routingKey4 = "waring.work";
+        String routingKey5 = "warn.user.work";
 
         /**
          * 方法参数解析：basicPublish(String exchange, String routingKey, BasicProperties props, byte[] body)
@@ -38,6 +39,7 @@ public class ProducerForTopicExchange {
         channel.basicPublish(exchangeName,routingKey2,null,"info from news module".getBytes());
         channel.basicPublish(exchangeName,routingKey3,null,"info from me module".getBytes());
         channel.basicPublish(exchangeName,routingKey4,null,"waring from work module".getBytes());
+        channel.basicPublish(exchangeName,routingKey5,null,"waring from warn.user.work module".getBytes());
 
         //5、关闭相关连接
         channel.close();

@@ -24,7 +24,7 @@ public class ConsumerForTopicExchange {
         String exchangeName = "topic_exchange";
         String exchangeType = "topic";
         String queueName = "testqueue";
-        String routingKey = "waring.#";
+        String routingKey = "*.work";
         //声明交换器
         channel.exchangeDeclare(exchangeName,exchangeType,true,false,false,null);
         channel.queueDeclare(queueName,false,false,false,null);
